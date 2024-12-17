@@ -12,7 +12,6 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class UserService {
 
-    @Autowired
     private final UserRepository userRepository;
 
     public User saveUser(User user){

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -12,6 +13,8 @@ import java.util.Set;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString(exclude = "password")
 @EqualsAndHashCode(of = {"username", "dob"})
+@Entity
+@Table(name = "USER_TABLE")
 public class User {
 
     @Id
@@ -23,9 +26,9 @@ public class User {
     @Setter @Getter @JsonIgnore
     private  String password;
     @Setter @Getter
-    private Date dob;
+    private LocalDate dob;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
